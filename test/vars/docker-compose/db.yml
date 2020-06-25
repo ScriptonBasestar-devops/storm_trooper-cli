@@ -1,0 +1,18 @@
+common:
+  docker_compose_version: 3.7
+  network: database
+maria10:
+  root_pass: password
+  port: 3306
+  placement: 'node.hostname == db'
+pg11:
+  image: postgres:11-alpine
+  pg_user: postgres
+  pg_pass: password
+  pg_db: db1
+  port: 5432
+  placement: 'node.hostname == db'
+redis5:
+  pass: password
+  port: 6379
+  placement: 'node.hostname == db'

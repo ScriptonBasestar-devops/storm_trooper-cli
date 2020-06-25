@@ -1,0 +1,76 @@
+version: '<%= @vars['common']['docker_compose_version'] %>'
+
+
+services:
+
+  postgres11:
+    image: <%= @vars['pg11']['image'] %>
+    environment:
+      - POSTGRES_USER=<%= @vars['pg11']['pg_user'] %>
+      - POSTGRES_PASSWORD=<%= @vars['pg11']['pg_pass'] %>
+      - POSTGRES_DB=<%= @vars['pg11']['pg_db'] %>
+    # command:
+    #   bash chown -R 1000:1000 /var/lib/postgresql/data
+    ports:
+      - <%= @vars['pg11']['port'] %>:5432
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - <%= @vars['pg11']['placement'] %>
+      labels:
+        - data=persistence
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      # - ./posrgres/postgres.conf:/etc/postgresql/postgresql.conf
+      # - ./posrgres/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    networks:
+      - <%= @vars['common']['network'] %>
+
+  redis5:
+    image: bitnami/redis:5.0
+    environment:
+      - REDIS_PASSWORD=<%= @vars['redis5']['pass'] %>
+    ports:
+      - <%= @vars['pg11']['port'] %>:6379
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - <%= @vars['pg11']['placement'] %>
+      labels:
+        - data=temporal
+    volumes:
+      - redis_data:/data
+    networks:
+      - <%= @vars['common']['network'] %>
+
+  maria10:
+    image: mariadb:10-bionic
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=<%= @vars['maria10']['root_pass'] %>'
+    ports:
+      - <%= @vars['pg11']['port'] %>:3306
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - <%= @vars['maria10']['placement'] %>
+      labels:
+        - data=persistence
+    volumes:
+      - maria_data:/var/lib/mysql
+      - maria_config:/etc/mysql
+    networks:
+      - <%= @vars['common']['network'] %>
+
+volumes:
+  pg_data:
+  redis_data:
+  maria_data:
+  maria_config:
+
+networks:
+  polypia-data:
+    driver: overlay
+    name: polypia-data
