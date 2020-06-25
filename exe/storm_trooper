@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'thor'
+
+$LOAD_PATH << File.join(File.dirname(__FILE__), '../lib')
 require 'storm_trooper'
+
+StormTrooper::Core.start
