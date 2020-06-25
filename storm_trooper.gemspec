@@ -28,4 +28,10 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+
+  spec.add_dependency 'git', '~> 1.7'
+  spec.add_dependency 'thor', '~> 1.0'
+
+  spec.add_development_dependency 'codecov'
+  spec.add_development_dependency 'simplecov'
 end
