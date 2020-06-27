@@ -1,0 +1,7 @@
+fragments:
+  terraform: http://github.com/ScriptonBasestar-devops/storm_trooper-fragment-terraform.git
+  docker_compose: http://github.com/ScriptonBasestar-devops/storm_trooper-fragment-docker-compose.git
+
+platform:
+  workbench: http://github.com/ScriptonBasestar-devops/storm_trooper-platform-workbench.git
+  aws-k8s-wordpress: http://github.com/ScriptonBasestar-devops/storm_trooper-platform-aws-k8s-wordpress.git
