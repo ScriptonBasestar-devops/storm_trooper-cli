@@ -32,12 +32,12 @@ services:
     environment:
       - REDIS_PASSWORD=<%= @vars['redis5']['pass'] %>
     ports:
-      - <%= @vars['pg11']['port'] %>:6379
+      - <%= @vars['redis5']['port'] %>:6379
     deploy:
       replicas: 1
       placement:
         constraints:
-          - <%= @vars['pg11']['placement'] %>
+          - <%= @vars['redis5']['placement'] %>
       labels:
         - data=temporal
     volumes:
@@ -50,7 +50,7 @@ services:
     environment:
       - 'MYSQL_ROOT_PASSWORD=<%= @vars['maria10']['root_pass'] %>'
     ports:
-      - <%= @vars['pg11']['port'] %>:3306
+      - <%= @vars['maria10']['port'] %>:3306
     deploy:
       replicas: 1
       placement:
