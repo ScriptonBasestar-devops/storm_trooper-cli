@@ -6,5 +6,6 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'minitest', '~> 5.0'
+gem 'minitest-hooks', '~> 1.5'
 gem 'rake', '~> 12.0'
 gem 'rspec', '~> 3.0'
