@@ -16,10 +16,15 @@ module StormTrooper
         @fragment_name = path.gsub(/(.*:|.git)/, '').split('/').last
         @fragment_path = "fragments/#{@fragment_name}"
 
-        run! "git submodule add #{@giturl}"
+        run! "git submodule add #{@giturl} #{@fragment_path}"
         # run! "git --git-dir #{path} checkout #{@branch}"
+        puts 'jiowfjowejiofw============'
+        puts @branch
+        puts @branch.to_s
         unless @branch.to_s.empty?
+          puts '============unless '
           Dir.chdir(@fragment_path) do
+            puts '====================chdir'
             run! "git checkout #{@branch}"
           end
           run! "git add #{@fragment_path}"
