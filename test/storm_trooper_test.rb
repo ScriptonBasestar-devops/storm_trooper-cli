@@ -17,11 +17,11 @@ class StormTrooperTest < Minitest::Test
       underscored_name: 'iiii'
     }
     puts File.absolute_path('.')
-    @vars = YAML.safe_load(File.read('test/vars/docker-compose/db.yml'))
+    @vars = YAML.safe_load(File.read('test/vars/docker-compose/docker-compose.yml'))
     # config.merge!(cloud_config)
 
-    result = ERB.new(File.read('test/tmpls/docker-compose/db.yml')).result(binding)
+    result = ERB.new(File.read('test/tmpls/docker-compose/docker-compose.yml')).result(binding)
     puts result
-    # thor.template("tmpls/docker-compose/db.yml.tt", "tmp1.yml", vars)
+    # thor.template("tmpls/docker-compose/docker-compose.yml.tt", "tmp1.yml", vars)
   end
 end

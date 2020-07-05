@@ -16,7 +16,7 @@ class YamlHelperTest < Minitest::HooksSpec
   end
 
   def setup
-    @yaml_helper = StormTrooper::Helper::YamlHelper.new('test/tmpls', 'test/vars', 'tmp')
+    @yaml_helper = StormTrooper::Helper::YamlHelper.new('test/tmpls', 'test/vars', 'tmp/card')
   end
 
   def teardown
@@ -27,7 +27,7 @@ class YamlHelperTest < Minitest::HooksSpec
   # ============================ test ============================
 
   def test_render
-    @vars = result = @yaml_helper.render('docker-compose/db.yml', 'docker-compose/db.yml')
+    @vars = result = @yaml_helper.render('docker-compose/docker-compose.yml', 'docker-compose/docker-compose.yml')
     puts result
     @yaml_helper.output('test.yml', result)
   end
