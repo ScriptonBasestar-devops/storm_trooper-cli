@@ -8,19 +8,23 @@ require_relative 'skeleton/root'
 module StormTrooper
   class Root < Base
 
-    desc 'generate', 'Generate IaC from configuration'
-    subcommand 'generate', StormTrooper::Generate::Root
+    desc 'skeleton', 'Skeleton for Platform, Fragment, Templates..'
+    subcommand 'skeleton', StormTrooper::Skeleton::Root
 
-    desc 'fragment', 'Use kite modules with environments'
+    desc 'fragment', 'Add Fragment to Platform Code'
     subcommand 'fragment', StormTrooper::Fragment::Root
 
-    desc 'execute', 'Run scripts'
+    desc 'generate', 'Generate override_template, blank_vars, last_order'
+    subcommand 'generate', StormTrooper::Generate::Root
+
+    desc 'execute', 'Execute LAST_ORDER'
     subcommand 'execute', StormTrooper::Execute::Root
 
-    desc 'version', 'Return kite version'
-    # Return kite version
+    desc 'version', 'Return StormTrooper version'
+
     def version
       say "v#{StormTrooper::VERSION}"
     end
+
   end
 end
