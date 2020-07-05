@@ -1,31 +1,62 @@
 # frozen_string_literal: true
 
+require 'storm_trooper/helper/root'
+
 module StormTrooper
   module Fragment
     class Root < Base
+      include StormTrooper::Helper::MainHelper
 
-      method_option :env, type: :string, desc: 'Environment', required: true, default: ENV['STROOP_ENV']
-      method_option :version, type: :string, desc: 'Version', aliases: '-v', required: false
-      desc 'fragment https://github.com/foo/bar-module module1', 'Add Fragment for StormTrooper'
-      def add(uri, path)
+      method_option :branch, type: :string, desc: 'Branch', required: false, default: 'master'
+      desc 'add https://github.com/foo/bar-module', 'Add Fragment for StormTrooper'
+      def add(path)
         say 'Fragment add - git submodule'
-        run! "git submodule add #{uri} #{path}"
-        run! 'git submodule init'
-        run! 'git submodule update'
+        @branch = options[:branch]
+        @giturl = path
+        @fragment_name = path.gsub(/(.*:|.git)/, '').split('/').last
+        @fragment_path = "fragments/#{@fragment_name}"
 
+        run! "git submodule add #{@giturl}"
+        # run! "git --git-dir #{path} checkout #{@branch}"
+        unless @branch.to_s.empty?
+          Dir.chdir(@fragment_path) do
+            run! "git checkout #{@branch}"
+          end
+          run! "git add #{@fragment_path}"
+        end
+        # run! "git submodule init #{path}"
+        run! "git submodule update --init #{@fragment_path}"
       end
 
-      desc 'git submodule add https://github.com/foo/bar-module', 'Add Fragment for StormTrooper'
-      def update(path)
+      method_option :path, type: :string, desc: 'Path for submodule', aliases: '-p', required: false
+      method_option :force, type: :string, desc: 'Forced', aliases: '--f', required: false
+      desc 'update <submodule>', 'Add Fragment for StormTrooper'
+      def update(path, force)
         say 'Fragment update - reset and update'
+        if path
+          run! "git --git-dir #{path} git fetch"
+          if force
+            run! 'git submodule foreach git reset --hard'
+          end
+        elsif
+          run! 'git submodule foreach git fetch'
+          if force
+            run! 'git submodule foreach git reset --hard origin/master'
+          end
+        end
       end
 
-      desc 'git submodule add https://github.com/foo/bar-module', 'Add Fragment for StormTrooper'
-      def modify
+      desc 'modify <submodule>', 'Add Fragment for StormTrooper'
+      def modify(path, message)
         say 'Fragment modify - This is not yet supported. Do it manually.', :yellow
+        if path
+          run! "git submodule path git commit -m '#{message}'"
+        elsif
+          run! "git submodule foreach git commit -m '#{message}'"
+        end
       end
 
-      desc 'git submodule deinit ', 'Add Fragment for StormTrooper'
+      desc 'remove <submodule>', 'Add Fragment for StormTrooper'
       def remove(path)
         say 'Fragment remove - remove from project'
         run! "git submodule deinit -f -- a/#{path}"
