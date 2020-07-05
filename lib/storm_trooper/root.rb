@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'skeleton/root'
 require_relative 'generate/root'
 require_relative 'fragment/root'
 require_relative 'execute/root'
-require_relative 'skeleton/root'
+require_relative 'helper/root'
 
 module StormTrooper
   class Root < Base

@@ -5,7 +5,6 @@ require 'yaml'
 module StormTrooper
   module Helper
     class YamlHelper
-      include StormTrooper::Helper
       def initialize(tmp_root, var_root, output_root)
         @var_root = var_root
       end

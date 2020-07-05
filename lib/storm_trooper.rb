@@ -12,8 +12,9 @@ require 'storm_trooper/error'
 require 'storm_trooper/base'
 require 'storm_trooper/root'
 
-require 'storm_trooper/helper/main_helper'
-require 'storm_trooper/helper/yaml_helper'
+require 'storm_trooper/helper/root'
+# require 'storm_trooper/helper/main_helper'
+# require 'storm_trooper/helper/yaml_helper'
 
 require 'storm_trooper/execute/root'
 require 'storm_trooper/fragment/root'
