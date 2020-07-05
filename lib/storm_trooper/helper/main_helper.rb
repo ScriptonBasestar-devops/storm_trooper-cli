@@ -11,7 +11,9 @@ module StormTrooper
       def run!(command, config = {})
         run(command)
 
-        raise Thor::Error, "command failed: #{command}" if $CHILD_STATUS.exitstatus != 0
+        if $?.exitstatus != 0
+          raise Thor::Error.new("command failed: #{command}")
+        end
       end
 
     end

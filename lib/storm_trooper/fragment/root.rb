@@ -18,13 +18,8 @@ module StormTrooper
 
         run! "git submodule add #{@giturl} #{@fragment_path}"
         # run! "git --git-dir #{path} checkout #{@branch}"
-        puts 'jiowfjowejiofw============'
-        puts @branch
-        puts @branch.to_s
         unless @branch.to_s.empty?
-          puts '============unless '
           Dir.chdir(@fragment_path) do
-            puts '====================chdir'
             run! "git checkout #{@branch}"
           end
           run! "git add #{@fragment_path}"
@@ -33,40 +28,35 @@ module StormTrooper
         run! "git submodule update --init #{@fragment_path}"
       end
 
-      method_option :path, type: :string, desc: 'Path for submodule', aliases: '-p', required: false
       method_option :force, type: :string, desc: 'Forced', aliases: '--f', required: false
-      desc 'update <submodule>', 'Add Fragment for StormTrooper'
-      def update(path, force)
+      method_option :branch, type: :string, desc: 'Branch', aliases: '-b', required: false
+      desc 'update <submodule>', 'Update Fragment for StormTrooper'
+      def update(path)
         say 'Fragment update - reset and update'
-        if path
-          run! "git --git-dir #{path} git fetch"
-          if force
-            run! 'git submodule foreach git reset --hard'
-          end
-        elsif
-          run! 'git submodule foreach git fetch'
-          if force
-            run! 'git submodule foreach git reset --hard origin/master'
+        @fragment_name = path
+        @fragment_path = "fragments/#{@fragment_name}"
+        Dir.chdir(@fragment_path) do
+          run! 'git fetch'
+          unless options[:force].to_s.empty?
+            if options[:branch].to_s.empty?
+              run! 'git reset --hard HEAD'
+            else
+              run! "git reset --hard origin/#{options[:branch]}"
+            end
           end
         end
       end
 
-      desc 'modify <submodule>', 'Add Fragment for StormTrooper'
-      def modify(path, message)
-        say 'Fragment modify - This is not yet supported. Do it manually.', :yellow
-        if path
-          run! "git submodule path git commit -m '#{message}'"
-        elsif
-          run! "git submodule foreach git commit -m '#{message}'"
-        end
-      end
-
-      desc 'remove <submodule>', 'Add Fragment for StormTrooper'
+      desc 'remove <fragment_name>', 'Remove Fragment for StormTrooper'
       def remove(path)
         say 'Fragment remove - remove from project'
-        run! "git submodule deinit -f -- a/#{path}"
-        run! "rm -rf .git/modules/a/#{path}"
-        run! "git rm -f a/#{path}"
+        @fragment_name = path
+        @fragment_path = "fragments/#{@fragment_name}"
+
+        run! "git submodule deinit -f -- #{@fragment_path}"
+        run! "rm -rf .git/modules/#{@fragment_path}"
+        run! "git rm -f #{@fragment_path}"
+        run! "rm -rf #{@fragment_path}"
       end
 
     end
