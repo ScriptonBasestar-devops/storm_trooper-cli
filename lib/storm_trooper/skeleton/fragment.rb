@@ -2,7 +2,7 @@
 
 module StormTrooper
   module Skeleton
-    class K8s < Base
+    class Fragment < Base
 
     end
   end

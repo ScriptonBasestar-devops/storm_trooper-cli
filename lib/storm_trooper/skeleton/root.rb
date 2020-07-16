@@ -4,7 +4,7 @@ require_relative 'ansible'
 require_relative 'aws_cloudformation'
 require_relative 'docker_compose'
 require_relative 'helm'
-require_relative 'k8s'
+require_relative 'kubernetes'
 require_relative 'terraform'
 
 module StormTrooper
@@ -14,20 +14,20 @@ module StormTrooper
       desc 'terraform', 'terraform skeleton for provider'
       subcommand 'terraform', StormTrooper::Skeleton::Terraform
 
-      desc 'cloudformation', 'cloudformation skeleton by aws service name'
-      subcommand 'cloudformation', StormTrooper::Skeleton::Terraform
+      desc 'awscloudformation', 'cloudformation skeleton by aws service name'
+      subcommand 'cloudformation', StormTrooper::Skeleton::AwsCloudformation
 
       desc 'dockercompose', 'dockercompose skeleton'
-      subcommand 'dockercompose', StormTrooper::Skeleton::Terraform
+      subcommand 'dockercompose', StormTrooper::Skeleton::DockerCompose
 
       desc 'ansible', 'ansible skeleton'
-      subcommand 'ansible', StormTrooper::Skeleton::Terraform
+      subcommand 'ansible', StormTrooper::Skeleton::Ansible
 
       desc 'helm', 'helm skeleton'
-      subcommand 'helm', StormTrooper::Skeleton::Terraform
+      subcommand 'helm', StormTrooper::Skeleton::Helm
 
-      desc 'k8s', 'k8s skeleton'
-      subcommand 'k8s', StormTrooper::Skeleton::Terraform
+      desc 'kubernetes', 'k8s skeleton'
+      subcommand 'kubernetes', StormTrooper::Skeleton::Kubernetes
 
     end
   end

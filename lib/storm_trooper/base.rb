@@ -10,5 +10,9 @@ module StormTrooper
       true
     end
 
+    def self.source_root
+      # File.expand_path(File.join(File.dirname(__FILE__), '../../tpl'))
+      File.join(Dir.pwd, 'skeleton')
+    end
   end
 end

@@ -2,7 +2,7 @@
 
 module StormTrooper
   module Skeleton
-    class Ansible < Base
+    class Kubernetes < Base
 
     end
   end

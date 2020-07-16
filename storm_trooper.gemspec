@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = '인프라를 찍어냅니다'
   spec.homepage      = 'https://github.com/ScriptonBasestar-devops/storm_trooper-cli'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
+  spec.required_ruby_version = Gem::Requirement.new('~= 2.6')
 
   spec.metadata['allowed_push_host'] = 'https://rubygems.pkg.github.com/ScriptonBasestar-devops'
 
