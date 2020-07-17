@@ -3,7 +3,7 @@
 require File.expand_path('../test_helper', __dir__)
 
 
-class YamlHelperTest < Minitest::HooksSpec
+class YamlRenderHelperTest < Minitest::HooksSpec
   # https://github.com/mrrusof/minitest-before-after-examples/blob/master/class-eager-flat-hooks.rb
 
   before(:all) do

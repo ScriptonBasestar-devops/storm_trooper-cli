@@ -5,7 +5,7 @@ require 'storm_trooper/helper/root'
 module StormTrooper
   module Fragment
     class Root < Base
-      include StormTrooper::Helper::MainHelper
+      include StormTrooper::Helper
 
       method_option :branch, type: :string, desc: 'Branch', required: false, default: 'master'
       desc 'add https://github.com/foo/bar-module', 'Add Fragment for StormTrooper'

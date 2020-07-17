@@ -5,7 +5,7 @@ require 'storm_trooper/helper/root'
 module StormTrooper
   module Skeleton
     class Terraform < Base
-      include StormTrooper::Helper::MainHelper
+      include StormTrooper::Helper
 
       method_option :provider, type: :string, desc: 'Provider Type', required: true
       method_option :backend, type: :string, desc: 'Backend Type', default: 'local'
