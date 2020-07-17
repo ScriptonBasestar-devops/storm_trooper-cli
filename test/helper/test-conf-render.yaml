@@ -1,0 +1,18 @@
+cloud:
+  test:
+    name: test-name
+  dev:
+    local:
+      name: dev-local-name
+    team:
+      name: dev-team-name
+  qa:
+    alpha:
+      name: qa-alpha-name
+    beta:
+      name: qa-beta-name
+  real:
+    stg:
+      name: real-stg-name
+    prd:
+      name: real-prd-name
