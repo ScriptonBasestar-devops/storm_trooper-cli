@@ -2,7 +2,7 @@
 
 require_relative 'skeleton/root'
 require_relative 'generate/root'
-require_relative 'fragment/root'
+require_relative 'scaffold/root'
 require_relative 'execute/root'
 require_relative 'helper/root'
 
@@ -12,8 +12,8 @@ module StormTrooper
     desc 'skeleton', 'Skeleton for Platform, Fragment, Templates..'
     subcommand 'skeleton', StormTrooper::Skeleton::Root
 
-    desc 'fragment', 'Add Fragment to Platform Code'
-    subcommand 'fragment', StormTrooper::Fragment::Root
+    desc 'scaffold', 'Add Fragment to Platform Code'
+    subcommand 'scaffold', StormTrooper::Fragment::Root
 
     desc 'generate', 'Generate override_template, blank_vars, last_order'
     subcommand 'generate', StormTrooper::Generate::Root

@@ -1,6 +1,6 @@
 fragments:
-  terraform: http://github.com/ScriptonBasestar-devops/storm_trooper-fragment-terraform.git
-  docker_compose: http://github.com/ScriptonBasestar-devops/storm_trooper-fragment-docker-compose.git
+  terraform: http://github.com/ScriptonBasestar-devops/storm_trooper-scaffold-terraform.git
+  docker_compose: http://github.com/ScriptonBasestar-devops/storm_trooper-scaffold-docker-compose.git
 
 platform:
   workbench: http://github.com/ScriptonBasestar-devops/storm_trooper-platform-workbench.git

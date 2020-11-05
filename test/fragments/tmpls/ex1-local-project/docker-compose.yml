@@ -1,4 +1,4 @@
-version: '<%= @vars['common']['docker_compose_version'] %>'
+version: "<%= @vars['common']['docker_compose_version'] %>"
 
 
 services:
@@ -48,7 +48,7 @@ services:
   maria10:
     image: mariadb:10-bionic
     environment:
-      - 'MYSQL_ROOT_PASSWORD=<%= @vars['maria10']['root_pass'] %>'
+      - MYSQL_ROOT_PASSWORD=<%= @vars['maria10']['root_pass'] %>
     ports:
       - <%= @vars['maria10']['port'] %>:3306
     deploy:

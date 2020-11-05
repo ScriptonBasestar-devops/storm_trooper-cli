@@ -7,6 +7,10 @@
 /spec/reports/
 /tmp/
 
+.env
+
 ## ide
 .idea/
 
+## storm_trooper
+../orders/
