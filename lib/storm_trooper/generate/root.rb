@@ -12,7 +12,7 @@ module StormTrooper
       subcommand 'override_tmpl', StormTrooper::Generate::OverrideTmpl
 
       desc 'blank_vars', 'Generate blank_vars'
-      subcommand 'blank_vars', StormTrooper::Generate::BlankVars
+      subcommand 'blank_vars', StormTrooper::Generate::BlankVar
 
       desc 'last_order', 'Generate last_order'
       subcommand 'last_order', StormTrooper::Generate::LastOrder

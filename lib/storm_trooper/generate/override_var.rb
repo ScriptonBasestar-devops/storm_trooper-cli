@@ -2,7 +2,7 @@
 
 module StormTrooper
   module Generate
-    class BlankVars < Base
+    class OverrideVar < Base
 
       desc 'render <~~>', 'TODO: not yet implemented'
       def render

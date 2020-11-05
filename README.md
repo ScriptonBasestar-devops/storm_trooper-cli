@@ -1,34 +1,70 @@
 # StormTrooper
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/storm_trooper`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+프로젝트 템플릿 생성 및 실행 관리
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-```ruby
+```shell script
 gem 'storm_trooper'
+sttr help
 ```
 
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install storm_trooper
 
 ## Usage
 
-TODO: Write usage instructions here
+### Scaffold
+
+#### Platform
+
+* empty platform
+* k8s on aws platform
+* onprem platform
+
+#### Fragment
+
+* docker-compose
+* ansible
+
+### Generate
+
+### Execute
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+platform scaffold 구조 예시
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```
+p10_infra
+  tmpls # 템플릿
+  vars # 기본값
+p20_network
+  tmpls
+  vars
+p30_container
+  tmpls
+  vars
+```
+
+platform 사용 예시
+
+```
+p10_infra
+  tmpls # override tmpls. 변경된것들만 여기 표시
+  vars # override vars. generate 이용해서 empty vars 생성. 1 default vars를 가져오기. 2 tmpls와 override tmpls에서 생성하고 default vars 값 있는것 채워넣기 
+p20_network
+  tmpls
+  vars
+p30_container
+  tmpls
+  vars
+orders # last_orders 마지막 실행코드
+  p10_infra
+  p20_network
+  p30_container
+```
+
 
 ## Contributing
 
@@ -38,6 +74,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
 
 ## Code of Conduct
 

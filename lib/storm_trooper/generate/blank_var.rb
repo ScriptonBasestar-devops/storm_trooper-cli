@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 module StormTrooper
-  module Skeleton
-    class DockerCompose < Base
-      # FIXME 현재는 덮어씌우는 방식으로 만들어졌는데 ... merge하는 방식으로 변경?
+  module Generate
+    class BlankVar < Base
 
       desc 'render <~~>', 'TODO: not yet implemented'
-      def mysql
+      def render
 
       end
 
       desc 'output <~~>', 'TODO: not yet implemented'
-      def kafka
+      def output
+
       end
+
     end
   end
 end
